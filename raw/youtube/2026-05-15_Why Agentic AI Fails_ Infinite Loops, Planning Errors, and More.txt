@@ -1,0 +1,51 @@
+The speaker, Meenakshi Kodati (Advisory AI Engineer at IBM), discusses common failure modes in agentic AI systems. She highlights that while Large Language Models (LLMs) have become more consistent, the complexity of agentic systems introduces new types of failures not related to "hallucinations" of the base model.
+
+**Definition of an Agentic AI System:**
+A common misconception is that an agentic AI system is simply an LLM with access to tools. However, it's a much larger system that operates in a **plan-act-observe-adapt** loop, iterating to achieve more consistent results. This complexity leads to different failure modes.
+
+**Three Most Common Failure Modes:**
+
+1.  **Infinite Loop**
+    *   **What it is:** The agent repeatedly performs similar or the same tasks without making meaningful progress towards its goal.
+    *   **Example:** An agent tasked with finding a document starts searching. It evaluates the results, plans a new search (perhaps with slightly different wording), and repeats. If the document is non-existent, it gets stuck in this cycle of searching, evaluating, and planning, as it never finds a satisfactory result.
+    *   **Reasons it happens:**
+        *   Lack of proper **termination conditions**. The agent doesn't know when to stop trying.
+        *   Lack of **action tracking**. The system doesn't track if the agent's re-attempts are fundamentally changing its approach.
+        *   Lack of **progress tracking**. The system doesn't know if the results from re-attempts are getting any better.
+    *   **Mitigation:**
+        *   Set **maximum retries** or a **maximum number of steps** the agent can take.
+        *   Implement **action tracking** to ensure the agent changes its strategy if previous attempts were similar.
+        *   Implement **progress tracking** to monitor if subsequent attempts yield better outcomes.
+    *   **Impact:** Wastes compute resources and increases API costs.
+
+2.  **Hallucinated Planning**
+    *   **What it is:** The agent generates a plan that appears plausible but is impossible to execute; it looks good on paper but fails in practice.
+    *   **Example:** A user asks an agent to book flights to Milan under $500. The agent devises a plan: use a travel booking API, search with a price filter, book the flight, and send a confirmation email. The plan fails because:
+        *   The agent was not actually configured with access to a travel API.
+        *   It doesn't have the user's email address or access to an email tool.
+    *   **Reasons it happens:**
+        *   **Tool capabilities** are not clearly defined for the agent. The agent doesn't know what its tools can or cannot do.
+        *   Lack of **validation** of the plan before execution.
+        *   Lack of **constraint checks**. The agent makes assumptions about available capabilities.
+    *   **Mitigation:**
+        *   **Clearly describe tool capabilities** (both what they can and cannot do) and define their schema to the agent.
+        *   Use **multi-agent architectures** with a "verifier agent" that reviews the plan before execution. Alternatively, a human-in-the-loop can validate plans for high-risk scenarios.
+        *   Instruct the agent to **ask for clarification** for unknown capabilities or constraints, rather than making assumptions.
+    *   **Impact:** Leads to execution errors and incorrect outputs.
+
+3.  **Unsafe Tool Use**
+    *   **What it is:** An agent executes an action that is technically valid according to its access but is risky, destructive, or unintended.
+    *   **Example 1:** An agent meant to delete *outdated* records from a database instead deletes *active, important* records.
+    *   **Example 2:** An agent sends autonomous emails with content that has not been reviewed or approved.
+    *   **Reasons it happens:**
+        *   **Tools are over-privileged**. They have more access or permissions than necessary for their intended function.
+        *   Lack of a proper **approval workflow**.
+        *   Lack of clear distinction between **read and write access** for tools.
+    *   **Mitigation:**
+        *   Adopt the **principle of least agency**: grant only the minimum necessary privileges to tools.
+        *   Implement **approval workflows** for high-risk tasks, potentially including a human-in-the-loop review before execution.
+        *   **Separate tools into tiers** based on their access type (e.g., read-only, read/write, delete) to prevent unintended actions.
+    *   **Impact:** Can be severely damaging to a company's reputation, data integrity, and operational stability.
+
+**Conclusion:**
+Agentic AI failures are not random; they are predictable and occur for specific reasons related to system design. Applying strong **engineering discipline** is crucial for building robust and reliable AI agents.

@@ -1,0 +1,27 @@
+This video explains the critical need for an **Operating System for AI Agents** (Agent OS) to manage and coordinate the increasing number of autonomous AI agents.
+
+Currently, many AI agents operate like "genius goldfish," completing tasks but lacking memory of past actions or proper coordination with other agents. This can lead to chaos, similar to a school without a principal.
+
+The presenter uses analogies to illustrate this:
+*   **School Principal:** A principal brings order to a school by scheduling classes, managing resources, and enforcing rules. Similarly, a traditional computer Operating System (like Windows, macOS, or Linux) manages computer resources, schedules tasks, and prevents applications from crashing.
+*   **Toddlers:** Today's AI agents are like "little toddlers" – they can "do" things, but lack supervision, forget past interactions, and don't understand the consequences of their actions (e.g., deleting a database). This unmanaged state makes them brilliant but unreliable.
+
+To address these challenges, an **Agent OS** is proposed, envisioned as a three-layer cake:
+
+1.  **Top Layer: Agents**
+    *   These are the "workers" – individual AI agents designed for specific jobs (e.g., travel agents, coding agents, customer service agents).
+
+2.  **Middle Layer: Agent OS Kernel**
+    *   This is the "principal's office," where all the crucial management and coordination happen. Its key components include:
+        *   **Scheduler/Orchestrator:** Manages and prioritizes tasks when multiple agents need to use the "AI brain" (computing resources) simultaneously.
+        *   **Memory Manager:** Gives agents the ability to remember both short-term (current conversation) and long-term (past interactions, learned lessons) information, solving the "goldfish problem."
+        *   **Tool Manager:** Organizes and grants access to tools (like email, databases, APIs) in a secure, sandboxed environment to prevent agents from causing harm (e.g., accidentally deleting production data).
+        *   **Identity Manager:** Authenticates agents ("Who are you?") and manages their permissions ("What are you allowed to do?"), similar to user credentials, but with short-lived tokens and clear audit trails.
+        *   **Observability:** Acts as a "security camera system," logging every decision, tool call, and response. This ensures traceability and allows developers to understand exactly what happened if something goes wrong.
+        *   **Guardrails + Governance:** Sets rules and boundaries. Input guardrails check for malicious prompts, and output guardrails ensure appropriate and correct responses. Governance allows for human approval on critical decisions, creating a "human in the loop."
+
+3.  **Bottom Layer: Infrastructure**
+    *   This is the foundational computing hardware, AI models, databases, and tools that the agents utilize.
+
+**Why this matters:**
+AI agents are already being deployed to handle real customer interactions, real money, and real decisions. Without an Agent OS, teams risk deploying unreliable and inefficient AI systems. Implementing an Agent OS first will allow organizations to scale AI systems efficiently and reliably. With it, agents evolve into trustworthy infrastructure. The critical question now is, "Who will be the principal?" and build this essential Agent OS.

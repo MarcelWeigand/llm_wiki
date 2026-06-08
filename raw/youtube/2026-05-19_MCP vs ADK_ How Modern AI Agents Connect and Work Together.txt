@@ -1,0 +1,55 @@
+This video breaks down the Model Context Protocol (MCP) and the Agent Development Kit (ADK), explaining their individual purposes, differences, use cases, and how they complement each other in the realm of AI agents.
+
+**The Two Core Problems in Building AI Agents:**
+Developers building AI agents (beyond simple chatbots) typically face two main questions:
+1.  **Tools/Data Connectivity:** How does the agent access external tools and data (APIs, databases, files, web)?
+2.  **Agent Structure/Orchestration:** How do you build, structure, and run the agent itself, especially when dealing with multiple agents?
+
+**Model Context Protocol (MCP): Addressing Connectivity**
+*   **Definition:** MCP is an open standard created by Anthropic that focuses on providing a clean and reusable way for LLMs/agents to talk to the outside world.
+*   **Before MCP:** Custom integration code was needed for every external resource, leading to repetitive and inefficient development.
+*   **How it Works:**
+    *   It defines a "protocol" (a set of rules) for how an LLM host (the agent) communicates with "servers" that expose specific tools or data.
+    *   **Communication Format:** JSON-RPC.
+    *   **Local Communication:** Uses standard input/output (e.g., for IDE plugins accessing a file system).
+    *   **Remote Communication:** Uses HTTP with streaming support and authentication tokens (e.g., for web-based services).
+    *   **Key Primitives:**
+        *   **Tools:** Functions an LLM can call (e.g., "search the web," "run SQL query").
+        *   **Resources:** Data an LLM can read (e.g., files, documentation, internal/external databases).
+        *   **Prompts:** Pre-built prompt templates.
+*   **Benefits:**
+    *   **Reusability:** Write a server wrapper for a tool once, and any MCP-compatible client (LLM/agent) can use it, regardless of the underlying model.
+    *   **Model-Agnostic:** It works with any LLM (Claude, GPT, Gemini, local models).
+    *   **Growing Ecosystem:** Many existing MCP servers are available for common services like GitHub, Slack, Google Drive, Postgres, Jira, and Figma.
+
+**Agent Development Kit (ADK): Addressing Structure and Orchestration**
+*   **Definition:** ADK is an open-source Python framework from Google that provides structure for building AI agents, moving beyond simple LLM-plus-prompt setups.
+*   **Core Building Blocks:** Agents, Tools, Memory, Events, and Runners.
+*   **Agent Definition:** An agent in ADK is a defined execution unit with:
+    *   A model (the LLM).
+    *   Sets of instructions.
+    *   Allowed tools.
+    *   A controlled reasoning loop.
+*   **Types of Agents:**
+    *   **LLM-driven Agents:** Offer flexible reasoning (classic "think and act" loops).
+    *   **Workflow Agents:** For situations requiring strict control flow (sequential, loop, parallel steps). This allows for hardcoding structure when needed, reducing reliance on LLM decision-making for critical paths.
+    *   **Custom Agents:** Provides flexibility to create specialized agents.
+*   **Execution Flow (User Query to Agent):**
+    *   A user query is received by a "Runner."
+    *   The "Runner" passes the query to the "Agent."
+    *   The "Agent" executes its reasoning loop and, when it needs to perform an external action or report a state change, it "yields" back to the "Runner."
+    *   The "Runner" then has full control to process the agent's update, handle consequences (like calling external services), and pass information back upstream, providing control and predictability.
+*   **Key Features:**
+    *   **Predictable Behavior:** The `yield` mechanism makes debugging and tracing agent behavior much easier.
+    *   **Session State:** Short-term working memory within a single conversation.
+    *   **Memory:** Long-term memory across sessions (e.g., user preferences).
+    *   **Tool Use:** Agents can use tools to run code, call APIs, or even integrate other agents as tools.
+    *   **Multi-Agent Systems:** ADK is particularly strong for building complex multi-agent architectures (e.g., a root orchestrator delegating tasks to specialized research, writing, or validation agents).
+    *   **Model-Agnostic:** Supports multiple LLM backends, providing flexibility and avoiding vendor lock-in.
+
+**MCP vs. ADK: Complementary, Not Competing**
+The video emphasizes that MCP and ADK solve different, complementary problems:
+*   **ADK** defines the agent's *internal logic* – its memory, reasoning, tool use, and how it handles retries or potential failures. It structures the "cognition" of the agent, providing guardrails and predictable planning.
+*   **MCP** defines the *standardized protocol* for *how* the agent communicates with external tools and data sources. It addresses the "connectivity" layer, allowing agents (regardless of how they're built) to reliably interact with a wide array of services.
+
+Therefore, the choice isn't "which one to use," but "what problem are you solving right now?" If you need to structure an agent's internal behavior and orchestration, you'd reach for ADK. If you need to standardize how an agent connects to external tools and data, you'd use MCP (and MCP servers can be integrated as tool sources within an ADK agent). They work together to build robust and reliable AI agent systems.
