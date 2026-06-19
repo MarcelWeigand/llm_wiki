@@ -48,3 +48,18 @@ Append-only record of all operations.
 - `Agentic AI/agentic-collaboration.md` — Written from scratch: MCP (connectivity protocol, primitives, ecosystem), ADK (orchestration framework, agent types, Runner/yield mechanism, memory, multi-agent support), and how the two compose together
 
 **Index updated**: Added agentic-collaboration.md to Agentic AI section.
+
+---
+
+## 2026-06-09
+
+**Source ingested**: `raw/youtube/2026-06-09_Building AI Agent Systems and Scaling Challenges in Agentic AI.txt`
+
+**Pages updated**:
+- `Agentic AI/agentic-ai-scaling.md` — Full rewrite from rough notes into proper wiki format: traditional vs agentic scaling, the agent loop under scale, error propagation (Washington example), system design as the core issue, multi-agent decomposition, horizontal vs vertical scaling trade-offs, and design principles for scalable systems
+
+**Pages updated (cross-links added)**:
+- `Agentic AI/agentic-ai-failures.md` — Added link to agentic-ai-scaling
+- `Agentic AI/agentic-ai-definition.md` — Added link to agentic-ai-scaling
+
+**Index updated**: Added agentic-ai-scaling.md to Agentic AI section.
