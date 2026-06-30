@@ -1,5 +1,13 @@
 
 
+# Model Deployment
+
+**Summary**: Patterns for deploying ML models to production — registry-at-runtime vs model-baked-in-image, with trade-offs and when to use each.
+
+**Last updated**: 2026-06-27
+
+---
+
 ## Workflow
 
 

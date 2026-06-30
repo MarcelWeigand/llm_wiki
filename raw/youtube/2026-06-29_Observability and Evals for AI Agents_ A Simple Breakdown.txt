@@ -1,0 +1,42 @@
+This video emphasizes that **observability** and **evaluation** are paramount and intricately linked when building AI agents, distinguishing this process significantly from traditional software engineering.
+
+Here are the key takeaways:
+
+1.  **Building with AI is Different:**
+    *   **Old World (Software):** Deterministic code, predictable outcomes.
+    *   **New World (LLM Apps):** Constrained, takes input, passes through LLM, gets output. Still somewhat predictable.
+    *   **Future (Agents):** Emergent behavior. LLMs decide actions, call tools, make API requests, look up data. This makes agents **non-deterministic**.
+    *   **Core Challenge:** "You don't know what your agent will do until your users use it." Unlike software where correctness can be tested beforehand, agent behavior emerges from complex interactions.
+
+2.  **From Debugging Code to Debugging Reasoning:**
+    *   **Software Observability:** Relies on deterministic systems, code as the source of truth, debugging via stack traces, and traditional APM tools.
+    *   **Agent Observability:** Deals with non-deterministic systems. **Traces are the source of truth.** Debugging requires understanding the decision context at *each step*. It's essential to track entire threads of conversation, tool calls, and the underlying reasoning context.
+
+3.  **The Primitives of Agent Observability:**
+    *   **Runs:** A single execution step, typically one LLM call with its specific input and output (e.g., system prompt, tools, AI message, tool call, reasoning blocks).
+    *   **Traces:** A complete agent execution, showing all runs and their relationships in chronological order. This is crucial as earlier steps or LLM calls can influence later ones.
+    *   **Threads:** Multi-turn conversations grouping multiple traces over time. Essential for understanding agents with memory or conversational context, as a response in turn 3 might depend on something said in turn 1.
+
+4.  **Agent Evaluation Differs from Software Evaluation:**
+    *   **Testing Reasoning, Not Code Paths:**
+        *   **Single-step evaluation:** Validates individual agent decisions in isolation (unit tests for decisions). Focuses on if the agent made the right choice at a specific moment (e.g., did it check availability before scheduling?). It's fast with clear pass/fail criteria.
+        *   **Full-turn evaluation (Trace):** Validates complete agent runs from input to final output (end-to-end trajectory assessment). Checks if the agent performed well across multiple steps, including tool usage and state changes (e.g., did the coding agent produce working code?).
+        *   **Multi-turn evaluation (Thread):** Validates threads across multiple conversation turns (realistic conversation flows). Assesses if the agent maintains context and remembers user preferences over time. This is the most realistic test of production behavior but is harder to set up.
+    *   **Production is the Discovery Phase:** Because of emergent behavior, production usage reveals what needs to be tested for offline. Correctness is often discovered in the wild, unlike traditional software where it's largely defined pre-release.
+
+5.  **When to Evaluate an Agent:**
+    *   **Offline:** During development, before shipping to production. Good for catching regressions and benchmarking against a static dataset.
+    *   **Online:** Right after the agent runs in production. Useful for flagging issues in real-time, even without ground truth.
+    *   **Ad hoc:** After ingestion (some time after runs). For exploratory data analysis, investigating specific user feedback or hunches.
+
+6.  **How Agent Observability Powers Evaluation:**
+    *   **Traces -> Manual Debugging:** By having detailed traces, developers can run agents locally on ad-hoc queries, inspect every step to find what went wrong, and debug in an interactive playground.
+    *   **Traces -> Offline Evaluation:** Production traces automatically become your evaluation dataset. When a user reports incorrect behavior, you can find the production trace, extract the state at the failure point, create a test case from that exact state (anonymizing data if necessary), and then fix and validate it.
+    *   **Traces -> Online Evaluation:** Online evaluations run on traces captured in production. They can perform checks like:
+        *   **Trajectory checks:** Flag unusual tool call patterns.
+        *   **Efficiency monitoring:** Detect performance degradation trends.
+        *   **Quality scoring:** Run LLM-as-judge on production outputs.
+        *   **Failure alerts:** Surface errors before users report them.
+    *   **Traces -> Ad hoc insights:** AI-assisted analysis tools (like LangSmith's insights agent) can query traces and threads to surface usage patterns, identify common failure modes, explain specific decisions (e.g., "Why did the agent call this tool at this step?"), and compare successful vs. failed executions to find patterns.
+
+**Conclusion:** Observability, encompassing runs, traces, and threads, forms the fundamental backbone for all effective agent evaluation strategies, enabling robust debugging, comprehensive offline testing, proactive online monitoring, and deep ad-hoc analysis.

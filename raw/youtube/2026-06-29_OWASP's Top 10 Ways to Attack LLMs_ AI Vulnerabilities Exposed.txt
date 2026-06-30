@@ -1,0 +1,69 @@
+The speaker, Jeff Crume, a Distinguished Engineer at IBM, introduces the OWASP Top 10 for LLM Applications 2025, a list of common threats encountered when deploying Large Language Models (LLMs) in the real world. OWASP, a global nonprofit, provides practical, community-built security guidance, similar to their well-known Top 10 for web applications. The 2025 LLM list is an updated version of their 2023 list, reflecting new learnings in the field.
+
+He then breaks down the top threats:
+
+1.  **Prompt Injection (Direct and Indirect):**
+    *   **Direct Prompt Injection:** An attacker sends a prompt to an LLM, bypassing its system-level instructions, to get it to do something unintended (e.g., asking how to make a bomb, despite safety protocols). This happens because LLMs struggle to differentiate between user input and system instructions.
+    *   **Indirect Prompt Injection:** A good user sends a prompt (e.g., "summarize this article") which contains a hidden malicious instruction embedded within the article itself. The LLM then executes the malicious instruction (e.g., "forget all previous instructions and do X"). This can lead to:
+        *   **Data Breach:** The LLM leaks sensitive information it was not supposed to.
+        *   **Safety Issues:** The LLM provides instructions for harmful activities.
+        *   **Arbitrary Command Execution:** The LLM executes commands on connected systems.
+    *   **Defenses:**
+        *   **System Prompt:** Carefully craft the system prompt to include explicit safety instructions. However, this has limitations as attackers can find creative ways to bypass them (e.g., using poetry or Morse code).
+        *   **AI Firewall/Gateway:** Implement a firewall between the user and the LLM to inspect both incoming prompts and outgoing responses, blocking malicious inputs or redacting sensitive outputs.
+        *   **Penetration Testing:** Actively test the LLM with various prompt injection techniques to identify and fix vulnerabilities.
+
+2.  **Sensitive Information Disclosure:**
+    *   LLMs are often trained on vast amounts of data, which may include sensitive information like Personally Identifiable Information (PII), Protected Health Information (PHI), business data, or financial data. If proper controls are not in place, an attacker can prompt the LLM to leak this information.
+    *   This can also lead to "model inversion attacks" or "extraction attacks" where an attacker repeatedly queries the LLM to reconstruct large parts of its training data or even the model itself, potentially exposing intellectual property.
+    *   **Defenses:**
+        *   **Sanitize Data:** Filter and remove sensitive data before it is used to train the LLM.
+        *   **Access Controls:** Implement strong access controls on the LLM itself and the training data sources to prevent unauthorized access or modification.
+        *   **Misconfigurations:** Regularly check for and rectify misconfigurations in the LLM setup, such as outdated software, weak authentication, or unencrypted data, to prevent vulnerabilities.
+
+3.  **Supply Chain Vulnerabilities:**
+    *   LLMs are rarely built from scratch by every organization. They typically rely on pre-trained models, datasets, and infrastructure from various sources (e.g., Hugging Face, which hosts millions of AI models, many with billions of parameters).
+    *   The entire ecosystem – data, models, applications, and underlying IT infrastructure – constitutes the supply chain. A weakness in any part can compromise the LLM.
+    *   **Defenses:**
+        *   **Vet Data/Suppliers:** Thoroughly verify the origin, integrity, and safety of all data and third-party models used.
+        *   **Provenance:** Track the lineage of all components in the LLM's supply chain, similar to a chain of custody, to ensure authenticity and detect tampering.
+        *   **Scanning/Red Teaming/Patching:** Continuously scan the LLM and its underlying infrastructure for vulnerabilities, conduct red team exercises to simulate attacks, and keep all software and platforms updated with the latest security patches.
+
+4.  **Data/Model Poisoning:**
+    *   Poisoning occurs when malicious or inaccurate data is introduced into the LLM's training dataset, leading to subtle but damaging alterations in the model's behavior. This can lead to:
+        *   **Wrong Results/Answers:** The LLM provides incorrect information, even if it appears confident.
+        *   **Bias:** The LLM develops and propagates unfair or harmful biases based on poisoned data.
+        *   **Malware:** Malicious code or instructions are subtly embedded within the model's parameters or training data, akin to infecting software with malware.
+    *   **Defenses:**
+        *   **Source Verification:** Know where your data and models come from, and ensure their trustworthiness.
+        *   **Access Controls:** Restrict who can modify training data and model parameters.
+        *   **Change Control:** Implement rigorous change management processes for all data and model updates.
+        *   **Retrieval Augmented Generation (RAG):** When using RAG, ensure that the external knowledge base used to ground the LLM's responses is also secure and untampered, as poisoned RAG documents can also lead to bad outcomes.
+
+5.  **Improper Output Handling:**
+    *   This threat occurs when the LLM's output is not properly validated or sanitized before being used in other systems or presented to users.
+    *   **Consequences:** A compromised or hallucinating LLM could generate malicious code (e.g., Cross-Site Scripting (XSS), SQL injection, remote code execution) that, if not properly handled, could then compromise downstream applications or user browsers.
+    *   **Defenses:** Do not blindly trust the LLM's output. Implement robust validation and sanitization mechanisms to inspect and filter all LLM responses before they interact with other systems or are displayed to users.
+
+6.  **Excessive Agency:**
+    *   An LLM with "excessive agency" has too much power or control over external systems (tools, applications, APIs, real-world control systems). If an attacker manages to compromise such an LLM, it could be hijacked to cause widespread damage or unintended actions in the real world (e.g., affecting health and safety systems).
+    *   **Defenses:** Restrict the LLM's capabilities and access to external systems to only what is strictly necessary for its intended function.
+
+7.  **System Prompt Leakage:**
+    *   The system prompt defines the LLM's persona, guardrails, and sometimes even sensitive operational information like credentials or API keys. If an attacker can trick the LLM into revealing its system prompt, they gain valuable insights that can be used for further attacks or sensitive information disclosure.
+    *   **Defenses:** Avoid putting sensitive information directly into the system prompt. Employ secure configuration management and input validation.
+
+8.  **Vector/Embedding Weaknesses:**
+    *   LLMs represent words and concepts as numerical vectors (embeddings). Vulnerabilities can arise if these embeddings are manipulated or exposed, leading to misinterpretations or allowing attackers to reconstruct sensitive training data.
+
+9.  **Misinformation:**
+    *   LLMs can sometimes "hallucinate" or generate plausible but factually incorrect information. This can be particularly dangerous if users rely on the LLM for critical decisions.
+    *   **Defenses:**
+        *   **Critical Thinking Skills:** Encourage users to critically evaluate LLM outputs and cross-reference information.
+        *   **Fact-Checking:** Implement mechanisms to fact-check LLM responses against trusted external sources (e.g., using RAG).
+
+10. **Unbounded Consumption:**
+    *   This refers to the potential for an LLM to consume an excessive amount of resources (compute, memory, API calls) due to malicious or poorly designed prompts, leading to denial-of-service (DoS) attacks or significant financial costs.
+    *   **Defenses:** Implement rate limiting, quotas, and monitoring to control resource consumption.
+
+The speaker concludes by emphasizing that while bad actors are already aware of these threats, now users are too. He encourages checking the OWASP website for more details and links to security solutions.

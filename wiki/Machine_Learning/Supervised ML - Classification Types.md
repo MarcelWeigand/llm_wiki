@@ -1,5 +1,13 @@
 
 
+# Supervised ML — Classification Types
+
+**Summary**: The four classification problem types — binary, multi-class, multi-label, and imbalanced — with definitions and examples.
+
+**Last updated**: 2026-06-27
+
+---
+
 | Type        | Nbr of Classes | How many labels/targets<br>can you have per row? | Are classes <br>mutually exclusive? | Example                                                                                                                                                              |
 | ----------- | -------------- | ------------------------------------------------ | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Binary      | Exactly 2      | Exactly 1                                        | Yes                                 | - Fraud (1) or non-fraud (0)<br>- spam or no spam                                                                                                                    |

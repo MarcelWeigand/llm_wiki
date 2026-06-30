@@ -1,4 +1,12 @@
 
+# Supervised ML — Metrics
+
+**Summary**: Regression and classification metrics — MAE, MSE, RMSE, R² for regression; precision, recall, and F1 for classification; and metrics specific to unbalanced datasets.
+
+**Last updated**: 2026-06-27
+
+---
+
 ## Classification
 
 - binary 

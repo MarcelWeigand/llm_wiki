@@ -1,0 +1,1 @@
+- AI agent platform covers agents and classical ml models under one term "agent platform"

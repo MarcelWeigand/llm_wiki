@@ -1,4 +1,12 @@
 
+# MLOps
+
+**Summary**: The practices and tooling for making ML systems reliable, reproducible, and maintainable in production — covering the full lifecycle from data management to monitoring.
+
+**Last updated**: 2026-06-27
+
+---
+
 Goal: make ML systems reliable, reproducible, and maintainable in production
 
 ---

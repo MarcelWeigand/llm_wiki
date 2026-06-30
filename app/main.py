@@ -11,14 +11,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Propagate proxy settings so all HTTP clients honour them
-_http_proxy = os.getenv("HTTP_PROXY")
-_https_proxy = os.getenv("HTTPS_PROXY")
-if _http_proxy:
-    os.environ["http_proxy"] = _http_proxy
-if _https_proxy:
-    os.environ["https_proxy"] = _https_proxy
-
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 
@@ -35,11 +27,9 @@ def extract_video_id(url: str) -> str | None:
 
 
 def get_video_metadata(video_id: str) -> dict:
-    proxies = {k: v for k, v in {"http": _http_proxy, "https": _https_proxy}.items() if v}
     resp = requests.get(
         "https://www.googleapis.com/youtube/v3/videos",
         params={"part": "snippet", "id": video_id, "key": YOUTUBE_API_KEY},
-        proxies=proxies,
     ).json()
     if resp.get("items"):
         s = resp["items"][0]["snippet"]

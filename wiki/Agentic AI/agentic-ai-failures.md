@@ -73,4 +73,5 @@ Agentic AI failures are not random and are not caused by base model quality issu
 - [[agent-os]]
 - [[agentic-ai-definition]]
 - [[agentic-ai-scaling]]
+- [[llm-security]] — Security framing of these failures; excessive agency is OWASP #6
 
