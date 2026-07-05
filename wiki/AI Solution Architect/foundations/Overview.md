@@ -42,7 +42,7 @@ AI has several orthogonal dimensions. Assess them in this order — each answer 
 
 These pages extend the 4-dimension framework with the additional knowledge an SA needs for solution design:
 
-- [[data-readiness]] — How to assess whether a client's data can support an AI use case (availability, quality, volume, labels, governance, architecture)
+- [[2b-data-readiness]] — How to assess whether a client's data can support an AI use case (availability, quality, volume, labels, governance, architecture)
 - [[solution-architecture-patterns]] — The six recurring end-to-end patterns for deploying AI systems (batch, real-time API, RAG, agentic, human-in-the-loop, edge)
 - [[Metrics]] — Evaluation metrics by capability type (classification, regression, generation)
 - [[neural-networks]] — Deep dive on neural network architectures (CNN, RNN/LSTM, Transformer, GNN)

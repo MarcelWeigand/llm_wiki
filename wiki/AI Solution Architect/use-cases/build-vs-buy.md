@@ -167,6 +167,6 @@ that prompting alone cannot achieve reliably?
 
 - [[technical-framework]] — Phase 4 includes build-vs-buy as an architecture question
 - [[solution-architecture-patterns]] — The pattern chosen (RAG, agentic, batch) constrains the build-vs-buy decision
-- [[data-readiness]] — Training data availability is the primary gate for fine-tune and train-from-scratch
+- [[2b-data-readiness]] — Training data availability is the primary gate for fine-tune and train-from-scratch
 - [[3-scoping]] — Where the build-vs-buy decision is locked in and costed
 - [[5-production-rollout]] — Vendor API dependency affects production maintenance model

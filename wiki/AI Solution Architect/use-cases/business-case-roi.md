@@ -142,4 +142,4 @@ Always present three scenarios: **conservative** (only the most certain value le
 - [[3-scoping]] — ROI inputs inform the go/no-go decision and executive sponsorship
 - [[5-production-rollout]] — Ongoing cost and adoption are the production-phase variables that determine whether the ROI is realised
 - [[technical-framework]] — Technical feasibility must be established before the ROI calculation is credible
-- [[data-readiness]] — Data preparation cost is typically the largest underestimated line item
+- [[2b-data-readiness]] — Data preparation cost is typically the largest underestimated line item

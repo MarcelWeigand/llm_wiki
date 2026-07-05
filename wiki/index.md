@@ -25,7 +25,7 @@ Table of contents for all wiki pages.
 - [foundations/Metrics.md](AI%20Solution%20Architect/foundations/Metrics.md) — Metrics by capability type with use case examples
 - [foundations/model-architectures/neural-networks.md](AI%20Solution%20Architect/foundations/model-architectures/neural-networks.md) — How each neural network family works, best data types, and when to use it (MLP, CNN, RNN/LSTM, Transformer, GNN)
 - [domains/Computer Vision.md](Computer%20Vision.md) — All CV sub-tasks mapped to the 4 dimensions with architecture and metric guidance
-- [foundations/data-readiness.md](AI%20Solution%20Architect/foundations/data-readiness.md) — Six-dimension data readiness framework (availability, volume, quality, labels, governance, architecture) with traffic-light scoring
+- [foundations/data-readiness.md](2b-data-readiness.md) — Six-dimension data readiness framework (availability, volume, quality, labels, governance, architecture) with traffic-light scoring
 - [foundations/solution-architecture-patterns.md](AI%20Solution%20Architect/foundations/solution-architecture-patterns.md) — Six end-to-end AI deployment patterns: batch, real-time API, RAG, agentic, human-in-the-loop, edge/embedded
 - [regulations/2.1 - Regulated industries.md](AI%20Solution%20Architect/regulations/2.1%20-%20Regulated%20industries.md) — AI constraints in regulated industries
 - [regulations/2.2 - EU_AI_Act.md](AI%20Solution%20Architect/regulations/2.2%20-%20EU_AI_Act.md) — EU AI Act summary for solution architects

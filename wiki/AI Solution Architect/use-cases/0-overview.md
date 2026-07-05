@@ -21,7 +21,7 @@ IDEATION → FEASIBILITY → SCOPING → REQUIREMENTS → PoC/PILOT → PRODUCTI
 | Step | Page | Question answered | Who |
 |---|---|---|---|
 | **1. Ideation** | [[1-ideation]] | Which business problems could AI solve? | Business leads, process owners |
-| **2. Feasibility** | [[2-feasibility]] | Which of those are worth building? | Business + data owners + IT |
+| **2. Feasibility** | [[2-feasibility]] · [[2b-data-readiness]] | Which of those are worth building? | Business + data owners + IT |
 | **3. Scoping** | [[3-scoping]] | How will we build it, and how long will it take? | SA + data team + IT |
 | **4. Requirements** | [[4-requirements]] | Exactly what must the system do, measurably? | SA + engineers + data scientists |
 | **5. Production Rollout** | [[5-production-rollout]] | How do we move from pilot to a system actually used in the company? | SA + product owner + change manager |
