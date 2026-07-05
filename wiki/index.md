@@ -24,7 +24,7 @@ Table of contents for all wiki pages.
 - [foundations/Overview.md](AI%20Solution%20Architect/foundations/Overview.md) — The 4 orthogonal AI dimensions: Capability, Application Domain, Learning Paradigm, Model Architecture
 - [foundations/Metrics.md](AI%20Solution%20Architect/foundations/Metrics.md) — Metrics by capability type with use case examples
 - [foundations/model-architectures/neural-networks.md](AI%20Solution%20Architect/foundations/model-architectures/neural-networks.md) — How each neural network family works, best data types, and when to use it (MLP, CNN, RNN/LSTM, Transformer, GNN)
-- [domains/Computer Vision.md](AI%20Solution%20Architect/foundations/application-domains/Computer%20Vision.md) — All CV sub-tasks mapped to the 4 dimensions with architecture and metric guidance
+- [domains/Computer Vision.md](Computer%20Vision.md) — All CV sub-tasks mapped to the 4 dimensions with architecture and metric guidance
 - [foundations/data-readiness.md](AI%20Solution%20Architect/foundations/data-readiness.md) — Six-dimension data readiness framework (availability, volume, quality, labels, governance, architecture) with traffic-light scoring
 - [foundations/solution-architecture-patterns.md](AI%20Solution%20Architect/foundations/solution-architecture-patterns.md) — Six end-to-end AI deployment patterns: batch, real-time API, RAG, agentic, human-in-the-loop, edge/embedded
 - [regulations/2.1 - Regulated industries.md](AI%20Solution%20Architect/regulations/2.1%20-%20Regulated%20industries.md) — AI constraints in regulated industries
@@ -38,7 +38,7 @@ Table of contents for all wiki pages.
 - [use-cases/technical-framework.md](AI%20Solution%20Architect/use-cases/technical-framework.md) — Decision guide: maps any AI use case to its 4 dimensions and architecture
 - [use-cases/build-vs-buy.md](AI%20Solution%20Architect/use-cases/build-vs-buy.md) — When to use vendor API, RAG, fine-tune, or train from scratch — decision guide with matrix and common mistakes
 - [use-cases/business-case-roi.md](AI%20Solution%20Architect/use-cases/business-case-roi.md) — Four value levers, ROI framework, executive business case structure, and common pitfalls
-- [use-cases/catalog-manufacturing.md](AI%20Solution%20Architect/use-cases/catalog-manufacturing.md) — Manufacturing AI use cases with deep dives and AI dimensions
+- [use-cases/catalog-manufacturing.md](catalog-manufacturing.md) — Manufacturing AI use cases with deep dives and AI dimensions
 - [use-cases/catalog-healthcare.md](AI%20Solution%20Architect/use-cases/catalog-healthcare.md) — Healthcare AI use cases (placeholder)
 - [use-cases/catalog-merantix.md](AI%20Solution%20Architect/use-cases/catalog-merantix.md) — Merantix-specific use case examples
 
