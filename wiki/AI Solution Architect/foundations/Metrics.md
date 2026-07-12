@@ -21,6 +21,8 @@ Two classes (defect / ok, fraud / legitimate, churn / no churn).
 | **ROC-AUC**                   | Area under the TPR vs FPR curve across all thresholds                  | Comparing models, threshold-independent evaluation, balanced datasets                                                                                                         |
 | **PR-AUC**                    | Area under the Precision vs Recall curve                               | Imbalanced datasets — ROC-AUC can be misleadingly optimistic when negatives vastly outnumber positives                                                                        |
 | **Confusion matrix**          | Full breakdown of TP, TN, FP, FN                                       | Always produce this alongside any metric — it reveals which errors the model makes                                                                                            |
+| Brier Score<br>Log-Loss       |                                                                        | Use this when a prediction of **99%** carries a completely different real-world weight or financial consequence than a prediction of **51%**                                  |
+|                               |                                                                        |                                                                                                                                                                               |
 
 **FPR vs. 1-Precision — common confusion**: both involve false positives but from different denominators:
 - **Precision**: TP / (TP+FP) — denominator is *predicted positives* → "of what I flagged, how many were real?"
