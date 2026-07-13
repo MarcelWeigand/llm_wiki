@@ -293,3 +293,13 @@ Page format headers added to 7 pages:
 
 **Page updated**: `wiki/Solution Architect/foundations/model-architectures/neural-networks.md`
 - Added section "When to use neural networks on structured/tabular data": 5 conditions that override the tree-model default (scale, high-cardinality categoricals, multi-modal input, sequential row structure, differentiable system), plus note on specialist tabular NN architectures (TabNet, FT-Transformer, SAINT)
+
+## 2026-07-08
+
+**Page updated**: `wiki/AI Solution Architect/use-cases/manufacturing/manufacturing-overview.md`
+- Added "Typical data:" lines to the three Dimension 1 domain sections that lacked them: §2 Supply Chain & Logistics, §4 Knowledge Management, §5 Sustainability
+
+## 2026-07-08 (second entry)
+
+**Page updated**: `wiki/AI Solution Architect/use-cases/manufacturing/manufacturing-overview.md`
+- Filled in the missing table columns in §4 Knowledge Management (Description, Dimension 2 Function, Dimension 3 AI Technology) for all use cases; normalized German/lowercase Dimension labels to English

@@ -6,6 +6,15 @@ suggesting a price that protects the company's profit margins while maximizing t
 
 Input data:
 buyer-facing transaction features: _Customer Segment, Region, Product Type, Order Volume,_ and the _Final Offered Price_.
+other ideas:
+- CRM data (customer communication, customer sentiment, transcripts, emails)
+- historic sales data
+- customer classification, scores
+- external finance data (inflation, market indices, currencies)
+- raw material prices
+- inventory levels
+
+
 
 
 How it works?
@@ -21,6 +30,7 @@ How it works?
 
 Risks
 - don't include margin into your training data or other internal costs as this is not what the buyer knows and sees, therefore not relevant for the output
+
 - ### 1. Data Leakage via Margin Features
 
 - **Risk:** Including internal costs or profit margins as training inputs to the machine learning model. Because Margin=Price−Cost, feeding this to the classifier introduces a logical redundancy that degrades the model’s ability to predict clean probabilities.
@@ -47,4 +57,3 @@ training the model
 - which features work good?
 - verify sales expertise, which hypothesis to verify
 
-Technology

@@ -8,10 +8,8 @@ Idea: have one reusable wiki for AI in manufacturing
 4. assess, prioritze ideas
 
 to dos: 
-- link to merantix use cases 
-- where does CAD optimization fit in?
+
 - rule 1: AI is only as good as feasibility allows depending on whether we have data and, if so, in what condition --> may need to prepare data first
-- opportunities and risks of breaking down data silos, and how is that done? build a data lake
 - have the AI summarize MxM use cases according to a defined structure --> langdoc agent
 	- Business problem 
 	- Solution: high-level technical description of the technologies. Input and output of the model in the solution
@@ -94,6 +92,8 @@ Typical data: continuous sensor data (vibration, current, temperature of the mac
 
 Goal: this area is primarily about optimizing the flow of materials, information, and capital. The organizational goal is to **ensure delivery capability while minimizing inventory and transportation costs**. Here AI mainly helps synchronize external uncertainties (market, weather, suppliers) with internal logistics processes.
 
+Typical data: transactional ERP/MES records (customer orders, historical sales, inventory levels, supplier delivery history), logistics and freight documents (delivery notes, invoices — often scanned or multilingual), plus external signals (weather, port congestion, news feeds).
+
 
 | Use case                                                                   | Description                                                                                                                                                                                                                                                                                                                                 | Dimension 2: Function      | Dimension 3: AI Technology                                                                                                                                                                                                                                                                                                                                         |
 | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -165,19 +165,25 @@ Typical data: camera images, 3D scans, dimensions, surface characteristics of th
 Goal: make isolated knowledge from technical manuals, documentation, and ERP systems automatically retrievable and accessible.
 The organizational goal here is not to repair machines or inspect products, but to **secure and structure the company's entire intellectual capital and make it instantly usable for employees**. In times of skilled-labor shortages and demographic change (loss of knowledge as experts retire), this is a major lever in manufacturing.
 
+Typical data: unstructured text and documents (technical manuals, PDFs, shift logs and handover reports, patents, engineering guidelines/norms), plus structured records from ERP/PLM systems and CAD/engineering files.
 
-| Use case                                                              |     |     |     |
-| --------------------------------------------------------------------- | --- | --- | --- |
-| Automated patent and technology research for the R&D team             |     |     |     |
-| Automated reading and structuring of shift logs and handover reports  |     |     |     |
-| AI-supported onboarding and training system for new factory employees |     |     |     |
-| Company-wide "expert finder" (who knows what?)                        |     |     |     |
+
+| Use case                                                              | Description                                                                                                                                                                                                                                       | Dimension 2: Function    | Dimension 3: AI Technology                                                          |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ----------------------------------------------------------------------------------- |
+| Automated patent and technology research for the R&D team             | An assistant scans patent databases and technical literature, summarizes relevant prior art, and flags competing or conflicting patents so engineers can assess freedom-to-operate without manually reading hundreds of filings.                  | Descriptive & Generative | NLP / GenAI (semantic search + RAG over patent corpora, summarization)              |
+| Automated reading and structuring of shift logs and handover reports  | The AI reads free-text shift logs and handover notes, extracts structured events (incidents, machine states, actions taken), and makes them searchable so the next shift and management retain what happened without re-reading raw notes.        | Descriptive & Generative | NLP / GenAI (information extraction, entity recognition, summarization)             |
+| AI-supported onboarding and training system for new factory employees | A conversational assistant answers new-hire questions from work instructions, SOPs, and safety documents, and generates role-specific training material and quizzes — shortening ramp-up time and easing the loss of retiring experts' knowledge. | Generative               | NLP / GenAI (RAG over internal documentation, content generation)                   |
+| Company-wide "expert finder" (who knows what?)                        | The AI indexes documents, tickets, and project records to map which employees have worked on which topics, so anyone can quickly find the right internal expert for a specific problem or machine.                                                | Descriptive              | NLP / GenAI (semantic search, entity linking, knowledge graph over people ↔ topics) |
+| Improve CAD creation from norms and guidelines                        | The AI checks 3D geometries against corporate norms and design guidelines and generates new or corrected CAD proposals, operationalizing engineering rules that would otherwise live only in experts' heads.                                      | Generative               | Computer vision (3D geometry analysis) + GenAI (CAD/image generation)               |
+| Generating BOMs out of RfQs                                           | The AI reads incoming requests for quotation (RfQs) — often unstructured documents — and drafts a structured bill of materials (BOM) to accelerate and standardize offer/quote creation.                                                          | Descriptive & Generative | NLP / GenAI (document understanding + RAG, structured extraction)                   |
 
 *Note: [[catalog-manufacturing]] currently only covers Computer Vision and Time Series & Structured Data use cases — it has no NLP/GenAI section yet, so nothing from the catalog maps here. The R&D assistant and digital bill-of-quantities ideas in the MxM Use Cases table below are the main candidates to backfill this domain.*
 
 ### 5. Sustainability
 
 Goal: **minimize CO₂ footprint, energy consumption, and material waste while complying with strict environmental regulations**. Here AI mainly helps uncover hidden waste in complex energy systems.
+
+Typical data: energy meter readings (electricity, gas) and load profiles, machine setpoints and production schedules, building/HVAC sensor data (temperature, occupancy), plus external weather forecasts and energy price signals.
 
 | Use case                                                                                       | Description                                                                                                                                                                                                                                                                              | Dimension 2: Function     | Dimension 3: AI Technology                                                                                                                                                                                                                                                                                                                                                  |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -223,3 +229,33 @@ Incoming use case ideas, classified according to the framework (Dimension 1–3)
 - *Vehicle damage detection* vs. *automatic damage detection*: these may be the same use case at different maturity/scope (car-specific vs. generic). Check whether they should be merged.
 - *Digital bill of quantities*: also touches Supply Chain & Logistics (offer/contract management with suppliers) — currently placed under Knowledge Management, since the core mechanism is automated document knowledge retrieval.
 - *Probabilistic demand forecasting* is essentially identical to the existing "(Probabilistic) Demand forecasting" entry in the Supply Chain table above — should be merged/deduplicated there rather than tracked separately.
+
+---
+### Data Types
+
+#### OT Data (Operational Technology)
+
+This is the raw, real-time data generated on the actual factory floor. It is inherently physical and fast-moving
+
+- **Examples:** Machine telemetry, vibration data, temperature readings from sensors, pressure metrics, PLCs (Programmable Logic Controllers), SCADA systems, and industrial camera feeds used for visual quality checks.
+- **AI Value:** This data tells the AI the current _physical state_ of your machines (e.g., _"Bearing temperature on Line 3 just spiked by 15 degrees"_)
+
+#### IT Data (Information Technology)
+
+This is the transactional and administrative data that manages the business side of the manufacturing company.
+
+- **Examples:** Enterprise Resource Planning (ERP) data (like SAP or Oracle), Manufacturing Execution Systems (MES), supply chain logs, customer orders, shift schedules, and maintenance histories
+- **AI Value:** This data provides the _business context_. It tells the AI things like, _"Line 3 is currently running a rush order for our most important client, and the operator on duty is a trainee"_
+
+#### ET Data (Engineering Technology)
+
+This is the design, structural, and simulation data created during the product development and factory planning phases.
+
+- **Examples:** Computer-Aided Design (CAD) files, Product Lifecycle Management (PLM) schemas, material specifications, and 3D simulation/digital twin data.
+- **AI Value:** This data provides the _ideal baseline specifications_. It tells the AI, _"According to the original engineering blueprint, this specific alloy should never exceed 180°C during stamping"
+
+---
+
+## Pain Points in manufacturing 
+
+- Combining enterprise data (SAP) with manufacturing data from different systems using different data models/schemas/formats
